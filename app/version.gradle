@@ -1,0 +1,40 @@
+/**
+ * This Gradle file manages the app versioning. It makes use of a 'version.properties' files which
+ * has to be located int he project root and must include 3 values: VERSION_MAJOR, VERSION_MINOR,
+ * and 'VERSION_BUILD'. In case a 'release' build is performed, 'VERSION_BUILD' is incremented.
+ *
+ * @author Pablo L. Sordo
+ * @since 1.0
+ */
+
+def versionPropertiesFile = rootProject.file('version.properties')
+
+if (versionPropertiesFile.canRead()) {
+    Properties versionProperties = new Properties()
+    versionProperties.load(versionPropertiesFile.newDataInputStream())
+
+    def versionMajor = versionProperties['VERSION_MAJOR'].toInteger()
+    def versionMinor = versionProperties['VERSION_MINOR'].toInteger()
+    def versionBuild = versionProperties['VERSION_BUILD'].toInteger()
+
+    android {
+        // increment 'versionBuild' in case a release is compiled
+        def runTasks = gradle.startParameter.taskNames
+        runTasks.forEach { task ->
+            if (task.contains('assembleProRelease')) {
+                // Update the build number in the local file
+                versionBuild++
+                versionProperties['VERSION_BUILD'] = (versionBuild).toString()
+                versionProperties.store(versionPropertiesFile.newWriter(), null)
+            }
+        }
+
+        defaultConfig {
+            println("versionBuild: $versionBuild")
+            versionCode versionBuild
+            versionName "${versionMajor}.${versionMinor}.${versionBuild}"
+        }
+    }
+} else {
+    throw new GradleException("Could not read 'version.properties' from project root")
+}

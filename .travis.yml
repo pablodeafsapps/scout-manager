@@ -1,0 +1,31 @@
+# Required configuration
+language: android
+jdk: oraclejdk8
+
+before_install:
+  - chmod +x gradlew   # To avoid permission issues on 'gradlew'
+  # To avoid permission issues due to the use of 'ConstraintLayout'
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+  # 'keystore.properties' for debug variant
+  - printf 'storeFile=storeFile\nstorePassword=storePassword\nkeyAlias=keyAlias\nkeyPassword=keyPassword' > keystore.properties
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-29.0.0
+    - android-29
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository # for design library
+    - addon-google_apis-google-28 # google play services
+
+# Script
+# 'connectedCheck' executes instrumentation tests located in /src/androidTest/
+# 'test' executes instrumentation tests located in /src/test/
+script:
+  - ./gradlew clean assembleDebug test -PdisablePreDex --stacktrace

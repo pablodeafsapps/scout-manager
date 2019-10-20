@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "513784950767",
+    "firebase_url": "https://scout-manager-8705b.firebaseio.com",
+    "project_id": "scout-manager-8705b",
+    "storage_bucket": "scout-manager-8705b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513784950767:android:5fe4e1bee5eeb80779501a",
+        "android_client_info": {
+          "package_name": "org.deafsapps.android.scoutmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513784950767-r3c5ae2q4o1i72chbeagmuk5vu9shoqh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.deafsapps.android.scoutmanager",
+            "certificate_hash": "a8450de7920697a1c64f92afef511ce3677e55d6"
+          }
+        },
+        {
+          "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdOhpGiVWPFA_5_85QMhf2iebxEzWhbTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513784950767:android:3050db934ff40fcd79501a",
+        "android_client_info": {
+          "package_name": "org.deafsapps.android.scoutmanager.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513784950767-nr6sp48gtqtm9rm6842inodsjrsr1imp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.deafsapps.android.scoutmanager.dev",
+            "certificate_hash": "a8450de7920697a1c64f92afef511ce3677e55d6"
+          }
+        },
+        {
+          "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdOhpGiVWPFA_5_85QMhf2iebxEzWhbTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513784950767:android:8e2fa1b4728a4f1a79501a",
+        "android_client_info": {
+          "package_name": "org.deafsapps.android.scoutmanager.pre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513784950767-vfdbg2h4dahbfbt5f9pmsn21r733pmb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.deafsapps.android.scoutmanager.pre",
+            "certificate_hash": "a8450de7920697a1c64f92afef511ce3677e55d6"
+          }
+        },
+        {
+          "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdOhpGiVWPFA_5_85QMhf2iebxEzWhbTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513784950767-18fugdfhstim79neia9t2nd42vlvv0kl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

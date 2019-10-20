@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+// add bug-log report feature
+apply plugin: 'io.fabric'
+apply plugin: 'org.jetbrains.dokka'
+// add overlaid launcher icons feature
+apply plugin: 'com.github.gfx.ribbonizer'
+// add version management feature
+apply from: 'version.gradle'
+
+def keystoreProperties = new Properties()
+keystoreProperties.load(rootProject.file("keystore.properties").newDataInputStream())
+
+android {
+    compileSdkVersion compilesdk_version
+    defaultConfig {
+        applicationId "org.deafsapps.android.scoutmanager"
+        minSdkVersion minsdk_version
+        targetSdkVersion targetsdk_version
+        buildToolsVersion buildtools_version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        pre {
+            applicationIdSuffix ".pre"
+            versionNameSuffix "-pre"
+        }
+        pro {
+        }
+    }
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        if (variant.buildType.name == 'release' && (names.contains('dev') || names.contains('pre'))) {
+            setIgnore(true)
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "./docs/dokka"
+    skipEmptyPackages = true   // skip empty packages
+    skipDeprecated = false   // skip deprecated
+    noStdlibLink = false   // skip documentation related to kotlin-stdlib
+}
+
+ribbonizer {
+    builder { variant, iconFile ->
+        // change ribbon color by product flavors
+        def filter
+        if (variant.flavorName == "dev") {
+            filter = greenRibbonFilter(variant, iconFile)
+        } else if (variant.flavorName == "pre") {
+            filter = yellowRibbonFilter(variant, iconFile)
+        } else if (variant.buildType.name == "debug") {   // pro
+            filter = customColorRibbonFilter(variant, iconFile, "#FF0000")
+        } else {   // pro - release
+            return
+        }
+        filter.label = variant.versionName.replaceFirst('-.*$', '')
+        return filter
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "com.google.firebase:firebase-core:$firebasecore_version"
+    implementation "com.google.firebase:firebase-analytics:$firebaseanalytics_version"
+    implementation "com.crashlytics.sdk.android:crashlytics:$crashlytics_version"
+    // other modules
+    implementation project(':presentation-layer')
+    implementation project(':domain-layer')
+    implementation project(':data-layer')
+    // 3rd party libraries
+    implementation "org.koin:koin-android:$koin_version"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+}
+
+apply plugin: 'com.google.gms.google-services'
