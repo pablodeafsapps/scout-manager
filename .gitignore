@@ -12,10 +12,15 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/encodings.xml
+/.idea/jarRepositories.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
 /docs/dokka
+/app/release
+/app/debug
 *.apk
+/translations
+/buildSrc/build

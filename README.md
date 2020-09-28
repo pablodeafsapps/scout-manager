@@ -77,6 +77,19 @@ Las ventajas que sustentan el uso de _coroutines_ son una fácil y mejorada gest
 
 Desde el punto de vista del flujo de ejecución, todas las tareas se ejecutan en el hilo principal (UI thread) hasta que se invoca algún _use-case_. A partir de ese instante las operaciones se desarrollan en hilos secundarios, para después devolver el resultado computado en el hilo principal nuevamente.
 
+### Functional Programming and Arrow
+
+La Programación Funcional (FP) es un paradigma nacido en la década de los 50 y basado en los principios de la programación declarativa. Implica fundamentos claves como la inmutabilidad, las funciones puras, la carencia de *side effects* y la transparencia referencial. A diferencia de la Programación Orientada a Objetos (OOP), todo se diseña para ser una función (en vez de un objeto). Estos conceptos hacen que las aplicaciones sean más flexibles, comprendibles y fácilmente escalables.
+
+<img src="docs/images/arrow-logo.png" alt="Arrow" width="500">
+
+[**Arrow**](https://arrow-kt.io/) es una *suite* de programación funcional escrita en Kotlin y cuyo objetivo es introducir la programación funcional en Kotlin, como ocurre en las aplicaciones Android. De acuerdo con la [documentación oficial](https://arrow-kt.io/docs/core/), *"Arrow es una colección modular de librerías que proveen funcionalidades incrementales de alto nivel"*.
+
+
+### Testing
+
+En cuanto a la validez y consistencia del código, se propone realizar un uso extensivo de tests unitarios y de integración en la capa domain y la capa data. Se utilizará una plataforma de automatización de tests para la consecución de la ansiada integración continua (CI/CD). 
+
 
 ## Licencia
 La licencia de este proyecto se adhiere al estándar **GNU GENERAL PUBLIC LICENSE**. Constular el fichero *LICENSE.md* en la raíz del proyecto para más información. 
